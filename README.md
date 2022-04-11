@@ -21,6 +21,12 @@ bundle install
 (Context: For running single test session). <br>
 i. Navigate to ./scripts/single.rb <br>
 ii. Change the capabilities and swap the credentials.
+
+  You can export Browserstack Username and Access key or hard code them in script.
+```
+export BROWSERSTACK_USER_NAME="YOUR_USER_NAME";
+export BROWSERSTACK_ACCESS_KEY="YOUR_ACCESS_KEY";
+```
   ```ruby
 # change capabilities
 caps = Selenium::WebDriver::Remote::Capabilities.new
