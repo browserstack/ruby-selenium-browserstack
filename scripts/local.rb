@@ -22,9 +22,11 @@ caps['javascriptEnabled'] = 'true'
 caps['browserstack.local'] = 'true'
 caps['name'] = 'BStack-[Ruby] Sample Test' # test name
 caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
+USER_NAME = ENV['BROWSERSTACK_USER_NAME'] || "YOUR_USER_NAME"
+ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 driver = Selenium::WebDriver.for(:remote,
-  :url =>  "https://USER_NAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",
-  :desired_capabilities => caps)
+  :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
+  :capabilities => options)
 begin
     # opening the bstackdemo.com website
     driver.navigate.to "http://bs-local.com:45691/check"

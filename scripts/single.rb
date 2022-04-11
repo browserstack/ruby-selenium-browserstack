@@ -49,4 +49,4 @@ begin
 rescue
     driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}')
 end
-driver.quit 
+driver.quit
