@@ -36,10 +36,6 @@ caps['os_version'] = '14.0'
 caps['javascriptEnabled'] = 'true'
 caps['name'] = 'BStack-[Ruby] Sample Test' # test name
 caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
-driver = Selenium::WebDriver.for(:remote,
-  :url =>  "https://USER_NAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub", # Use your browserstack username and accesskey
-  :desired_capabilities => caps)
-
   ```
   
 3. Run test session
