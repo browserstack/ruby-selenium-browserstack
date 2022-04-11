@@ -13,8 +13,10 @@ def run_session(browser, version, os, os_version, device, realMobile, javascript
     caps['name'] = test_name # test name
     caps['build'] = build_name # CI/CD job or build name
 
+    USER_NAME = ENV['BROWSERSTACK_USER_NAME'] || "YOUR_USER_NAME"
+    ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
     driver = Selenium::WebDriver.for(:remote,
-    :url => "https://USER_NAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",:desired_capabilities => caps)
+      :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",:desired_capabilities => caps)
     begin
         # opening the bstackdemo.com website
         driver.navigate.to "https://bstackdemo.com/"

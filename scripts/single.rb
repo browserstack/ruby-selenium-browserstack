@@ -8,8 +8,10 @@ caps['os_version'] = '14.0'
 caps['javascriptEnabled'] = 'true'
 caps['name'] = 'BStack-[Ruby] Sample Test' # test name
 caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
+USER_NAME = ENV['BROWSERSTACK_USER_NAME'] || "YOUR_USER_NAME"
+ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 driver = Selenium::WebDriver.for(:remote,
-  :url =>  "https://USER_NAME:ACCESS_KEY@hub-cloud.browserstack.com/wd/hub",
+  :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
   :desired_capabilities => caps)
 begin
     # opening the bstackdemo.com website
@@ -42,4 +44,4 @@ begin
 rescue
     driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}')
 end
-driver.quit 
+driver.quit
