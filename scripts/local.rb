@@ -9,7 +9,7 @@ ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 bs_local = BrowserStack::Local.new
 
 # You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-bs_local_args = { "key" => ACCESS_KEY }
+bs_local_args = { "key" => ACCESS_KEY, "force" => "true" }
 
 # Starts the Local instance with the required arguments
 bs_local.start(bs_local_args)
@@ -45,8 +45,6 @@ begin
         # marking test as 'failed' 
         driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Local setup failed"}}')
     end
-# marking test as 'failed' if test script is unable to open the local website
-    driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}')
 end
 driver.quit 
 
