@@ -45,12 +45,9 @@ bundle exec ruby ./scripts/single.rb
 ```
 
 For running local test (in ./scripts/local.rb)
+
 ```
-# Along with step 2 also use your Browserstack access key in bs_local_args
-bs_local_args = { "key" => "ACCESS_KEY" }
-```
-```
-bundle exec ruby ./scripts/single.rb
+bundle exec ruby ./scripts/local.rb
 ```
 
 For running parallel tests
