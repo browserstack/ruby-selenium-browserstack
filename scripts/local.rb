@@ -9,7 +9,7 @@ ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 bs_local = BrowserStack::Local.new
 
 # You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-bs_local_args = { "key" => ACCESS_KEY }
+bs_local_args = { "key" => ACCESS_KEY, "force" => "true" }
 
 # Starts the Local instance with the required arguments
 bs_local.start(bs_local_args)
@@ -17,14 +17,20 @@ bs_local.start(bs_local_args)
 # Check if BrowserStack local instance is running
 puts bs_local.isRunning
 # Input capabilities
-caps = Selenium::WebDriver::Remote::Capabilities.new
-caps['device'] = 'iPhone 11'
-caps['realMobile'] = 'true'
-caps['os_version'] = '14.0'
-caps['javascriptEnabled'] = 'true'
-caps['browserstack.local'] = 'true'
-caps['name'] = 'BStack-[Ruby] Sample Test' # test name
-caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
+options = Selenium::WebDriver::Options.chrome
+options.browser_version = 'latest'
+options.platform_name = 'MAC'
+bstack_options = {
+    "os" => "OS X",
+    "osVersion" => "Sierra",
+    "buildName" => "Final-Snippet-Test",
+    "sessionName" => "Selenium-4 Ruby snippet test",
+    "local" => "true",
+    "seleniumVersion" => "4.0.0",
+}
+
+options.add_option('bstack:options', bstack_options)
+
 driver = Selenium::WebDriver.for(:remote,
   :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
   :capabilities => options)
@@ -44,8 +50,6 @@ begin
         # marking test as 'failed' 
         driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Local setup failed"}}')
     end
-# marking test as 'failed' if test script is unable to open the local website
-    driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}')
 end
 driver.quit 
 

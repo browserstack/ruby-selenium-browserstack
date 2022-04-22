@@ -29,13 +29,14 @@ export BROWSERSTACK_ACCESS_KEY="YOUR_ACCESS_KEY";
 ```
   ```ruby
 # change capabilities
-caps = Selenium::WebDriver::Remote::Capabilities.new
-caps['device'] = 'iPhone 11'
-caps['realMobile'] = 'true'
-caps['os_version'] = '14.0'
-caps['javascriptEnabled'] = 'true'
-caps['name'] = 'BStack-[Ruby] Sample Test' # test name
-caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
+bstack_options = {
+    "os" => "OS X",
+    "osVersion" => "Sierra",
+    "buildName" => "Final-Snippet-Test",
+    "sessionName" => "Selenium-4 Ruby snippet test",
+    "local" => "false",
+    "seleniumVersion" => "4.0.0",
+}
 
   ```
   
@@ -47,11 +48,7 @@ bundle exec ruby ./scripts/single.rb
 
 For running local test (in ./scripts/local.rb)
 ```
-# Along with step 2 also use your Browserstack access key in bs_local_args
-bs_local_args = { "key" => "ACCESS_KEY" }
-```
-```
-bundle exec ruby ./scripts/single.rb
+bundle exec ruby ./scripts/local.rb
 ```
 
 For running parallel tests
