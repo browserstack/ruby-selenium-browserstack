@@ -45,6 +45,9 @@ begin
         # marking test as 'failed' 
         driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Local setup failed"}}')
     end
+# marking test as 'failed' if test script is unable to open the bstackdemo.com website
+rescue
+  driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}')
 end
 driver.quit 
 
