@@ -22,20 +22,22 @@ bundle install
 i. Navigate to ./scripts/single.rb <br>
 ii. Change the capabilities and swap the credentials.
 
-You can export Browserstack Username and Access key or hard code them in script.
+  You can export Browserstack Username and Access key or hard code them in script.
 ```
-export BROWSERSTACK_USER_NAME="YOUR_USER_NAME";
+export BROWSERSTACK_USERNAME="YOUR_USER_NAME";
 export BROWSERSTACK_ACCESS_KEY="YOUR_ACCESS_KEY";
 ```
   ```ruby
 # change capabilities
-caps = Selenium::WebDriver::Remote::Capabilities.new
-caps['device'] = 'iPhone 11'
-caps['realMobile'] = 'true'
-caps['os_version'] = '14.0'
-caps['javascriptEnabled'] = 'true'
-caps['name'] = 'BStack-[Ruby] Sample Test' # test name
-caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
+bstack_options = {
+    "os" => "OS X",
+    "osVersion" => "Sierra",
+    "buildName" => "Final-Snippet-Test",
+    "sessionName" => "Selenium-4 Ruby snippet test",
+    "local" => "false",
+    "seleniumVersion" => "4.0.0",
+}
+
   ```
   
 3. Run test session
@@ -45,7 +47,6 @@ bundle exec ruby ./scripts/single.rb
 ```
 
 For running local test (in ./scripts/local.rb)
-
 ```
 bundle exec ruby ./scripts/local.rb
 ```

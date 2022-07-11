@@ -1,21 +1,26 @@
 require 'rubygems'
 require 'selenium-webdriver'
-# Input capabilities
-caps = Selenium::WebDriver::Remote::Capabilities.new
-caps['device'] = 'iPhone 11'
-caps['realMobile'] = 'true'
-caps['os_version'] = '14.0'
-caps['javascriptEnabled'] = 'true'
-caps['name'] = 'BStack-[Ruby] Sample Test' # test name
-caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
-USER_NAME = ENV['BROWSERSTACK_USER_NAME'] || "YOUR_USER_NAME"
+
+options = Selenium::WebDriver::Options.chrome
+options.browser_version = 'latest'
+options.platform_name = 'MAC'
+bstack_options = {
+    "os" => "OS X",
+    "osVersion" => "Sierra",
+    "buildName" => "Final-Snippet-Test",
+    "sessionName" => "Selenium-4 Ruby snippet test",
+    "local" => "false",
+    "seleniumVersion" => "4.0.0",
+}
+options.add_option('bstack:options', bstack_options)
+USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
 ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 driver = Selenium::WebDriver.for(:remote,
   :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
-  :desired_capabilities => caps)
+  :capabilities => options)
 begin
     # opening the bstackdemo.com website
-    driver.navigate.to "https://bstackdemo.com/"
+    driver.navigate.to "https://bstackdemo.com"
     wait = Selenium::WebDriver::Wait.new(:timeout => 10) # seconds
     wait.until { !driver.title.match(/StackDemo/i).nil? }
     # getting name of the product available on the webpage
