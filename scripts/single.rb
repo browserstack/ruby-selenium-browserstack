@@ -14,7 +14,7 @@ bstack_options = {
 }
 options.add_option('bstack:options', bstack_options)
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
-ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
+ACCESS_KEY = ENV['BROWSERSTACK_ACCESSKEY'] || "YOUR_ACCESS_KEY"
 driver = Selenium::WebDriver.for(:remote,
   :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
   :capabilities => options)
