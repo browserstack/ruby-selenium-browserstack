@@ -3,7 +3,7 @@ require 'selenium-webdriver'
 require "browserstack/local"
 
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
-ACCESS_KEY = ENV['BROWSERSTACK_ACCESSKEY'] || "YOUR_ACCESS_KEY"
+ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 
 # Creates an instance of Local
 bs_local = BrowserStack::Local.new

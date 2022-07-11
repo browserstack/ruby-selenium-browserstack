@@ -2,20 +2,20 @@ require 'rubygems'
 require 'selenium-webdriver'
 
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
-ACCESS_KEY = ENV['BROWSERSTACK_ACCESSKEY'] || "YOUR_ACCESS_KEY"
+ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 
 def run_session(browser, browser_version, platform_name, os, osVersion, buildName, sessionName, seleniumVersion)
-  options = Selenium::WebDriver::Options.send browser
-  options.browser_version = browser_version
-  options.platform_name = platform_name
-  bstack_options = {
-      "os" => os,
-      "osVersion" => osVersion,
-      "buildName" => buildName,
-      "sessionName" => sessionName,
-      "seleniumVersion" => seleniumVersion,
-  }
-  options.add_option('bstack:options', bstack_options)
+    options = Selenium::WebDriver::Options.send browser
+    options.browser_version = browser_version
+    options.platform_name = platform_name
+    bstack_options = {
+        "os" => os,
+        "osVersion" => osVersion,
+        "buildName" => buildName,
+        "sessionName" => sessionName,
+        "seleniumVersion" => seleniumVersion,
+    }
+    options.add_option('bstack:options', bstack_options)
 
   driver = Selenium::WebDriver.for(:remote,
     :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",

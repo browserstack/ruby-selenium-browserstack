@@ -25,7 +25,7 @@ ii. Change the capabilities and swap the credentials.
   You can export Browserstack Username and Access key or hard code them in script.
 ```
 export BROWSERSTACK_USERNAME="YOUR_USER_NAME";
-export BROWSERSTACK_ACCESSKEY="YOUR_ACCESS_KEY";
+export BROWSERSTACK_ACCESS_KEY="YOUR_ACCESS_KEY";
 ```
   ```ruby
 # change capabilities
