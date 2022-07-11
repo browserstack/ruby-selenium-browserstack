@@ -2,7 +2,7 @@ require 'rubygems'
 require 'selenium-webdriver'
 require "browserstack/local"
 
-USER_NAME = ENV['BROWSERSTACK_USER_NAME'] || "YOUR_USER_NAME"
+USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
 ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 
 # Creates an instance of Local
