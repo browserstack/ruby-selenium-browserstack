@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'selenium-webdriver'
 
+USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
+ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
+
 def run_session(browser, version, os, os_version, device, realMobile, javascriptEnabled, test_name, build_name)
     caps = Selenium::WebDriver::Remote::Capabilities.new
     caps['browser'] = browser
@@ -13,8 +16,6 @@ def run_session(browser, version, os, os_version, device, realMobile, javascript
     caps['name'] = test_name # test name
     caps['build'] = build_name # CI/CD job or build name
 
-    USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
-    ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
     driver = Selenium::WebDriver.for(:remote,
       :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",:desired_capabilities => caps)
     begin
