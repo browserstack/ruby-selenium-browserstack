@@ -9,7 +9,7 @@ ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 bs_local = BrowserStack::Local.new
 
 # You can also set an environment variable - "BROWSERSTACK_ACCESS_KEY".
-bs_local_args = { "key" => ACCESS_KEY, "force" => "true" }
+bs_local_args = { "key" => ACCESS_KEY }
 
 # Starts the Local instance with the required arguments
 bs_local.start(bs_local_args)
@@ -22,11 +22,10 @@ options.browser_version = 'latest'
 options.platform_name = 'MAC'
 bstack_options = {
     "os" => "OS X",
-    "osVersion" => "Sierra",
-    "buildName" => "Final-Snippet-Test",
-    "sessionName" => "Selenium-4 Ruby snippet test",
+    "osVersion" => "Monterey",
+    "buildName" => "browserstack-build-1",
+    "sessionName" => "BStack Ruby sample local",
     "local" => "true",
-    "seleniumVersion" => "4.0.0",
 }
 
 options.add_option('bstack:options', bstack_options)

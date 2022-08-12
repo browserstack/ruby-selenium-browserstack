@@ -6,11 +6,9 @@ options.browser_version = 'latest'
 options.platform_name = 'MAC'
 bstack_options = {
     "os" => "OS X",
-    "osVersion" => "Sierra",
-    "buildName" => "Final-Snippet-Test",
-    "sessionName" => "Selenium-4 Ruby snippet test",
-    "local" => "false",
-    "seleniumVersion" => "4.0.0",
+    "osVersion" => "Monterey",
+    "buildName" => "browserstack-build-1",
+    "sessionName" => "BStack Ruby Sample"
 }
 options.add_option('bstack:options', bstack_options)
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"

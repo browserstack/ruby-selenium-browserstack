@@ -4,16 +4,14 @@ require 'selenium-webdriver'
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
 ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 
-def run_session(browser, browser_version, platform_name, os, osVersion, buildName, sessionName, seleniumVersion)
+def run_session(browser, browser_version, os, osVersion, buildName, sessionName)
   options = Selenium::WebDriver::Options.send browser
   options.browser_version = browser_version
-  options.platform_name = platform_name
   bstack_options = {
       "os" => os,
       "osVersion" => osVersion,
       "buildName" => buildName,
-      "sessionName" => sessionName,
-      "seleniumVersion" => seleniumVersion,
+      "sessionName" => sessionName
   }
   options.add_option('bstack:options', bstack_options)
 
@@ -54,8 +52,8 @@ def run_session(browser, browser_version, platform_name, os, osVersion, buildNam
   driver.quit 
 end
 
-t1 = Thread.new{ run_session("chrome", "latest", "MAC", "OS X", "Sierra", "parallel-snippet-test", "ruby 2", "4.0.0") }
-t2 = Thread.new{ run_session("firefox", "latest", "MAC", "OS X", "Sierra", "parallel-snippet-test", "ruby 3", "4.0.0") }
+t1 = Thread.new{ run_session("chrome", "latest", "OS X", "Monterey", "browserstack-build-1", "BStack Ruby sample parallel") }
+t2 = Thread.new{ run_session("firefox", "latest", "OS X", "Monterey", "browserstack-build-1", "BStack Ruby sample parallel") }
 
 t1.join()
 t2.join()
