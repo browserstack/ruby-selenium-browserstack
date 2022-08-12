@@ -13,9 +13,9 @@ bs_local_args = { "key" => ACCESS_KEY }
 
 # Starts the Local instance with the required arguments
 bs_local.start(bs_local_args)
-
 # Check if BrowserStack local instance is running
-puts bs_local.isRunning
+puts "Local binary started: #{bs_local.isRunning}"
+
 # Input capabilities
 options = Selenium::WebDriver::Options.chrome
 options.browser_version = 'latest'
@@ -30,9 +30,11 @@ bstack_options = {
 
 options.add_option('bstack:options', bstack_options)
 
-driver = Selenium::WebDriver.for(:remote,
-  :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",
-  :capabilities => options)
+driver = Selenium::WebDriver.for(
+    :remote,
+    :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",
+    :capabilities => options
+)
 begin
     # opening the bstackdemo.com website
     driver.navigate.to "http://bs-local.com:45691/check"
@@ -43,15 +45,21 @@ begin
     body_text = body.text
 
     if body_text.eql? "Up and running"
-        # marking test as 'passed' local ran succesfully
-        driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Local ran successfully"}}')
+        # mark test as 'passed' if local ran successfully
+        driver.execute_script(
+            'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"passed", "reason": "Local ran successfully"}}'
+        )
     else
-        # marking test as 'failed' 
-        driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Local setup failed"}}')
+        # mark test as 'failed' if local did not run
+        driver.execute_script(
+            'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Local setup failed"}}'
+        )
     end
-# marking test as 'failed' if test script is unable to open the bstackdemo.com website
 rescue
-    driver.execute_script('browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}')
+    # marking test as 'failed' in case of some exception
+    driver.execute_script(
+        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}'
+    )
 end
 driver.quit 
 
