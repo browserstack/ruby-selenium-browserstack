@@ -4,16 +4,10 @@ require 'selenium-webdriver'
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
 ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 
-def run_session(browser, browser_version, os, osVersion, buildName, sessionName)
-  options = Selenium::WebDriver::Options.send browser
-  options.browser_version = browser_version
-  bstack_options = {
-      "os" => os,
-      "osVersion" => osVersion,
-      "buildName" => buildName,
-      "sessionName" => sessionName
-  }
-  options.add_option('bstack:options', bstack_options)
+def run_session(capabililties)
+  options = Selenium::WebDriver::Options.send capabililties['browserName']
+  options.browser_version = capabililties['browserVersion'] if capabililties['browserVersion']
+  options.add_option('bstack:options', capabililties['bstack:options'])
 
   driver = Selenium::WebDriver.for(:remote,
     :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",
@@ -52,8 +46,42 @@ def run_session(browser, browser_version, os, osVersion, buildName, sessionName)
   driver.quit 
 end
 
-t1 = Thread.new{ run_session("chrome", "latest", "OS X", "Monterey", "browserstack-build-1", "BStack Ruby sample parallel") }
-t2 = Thread.new{ run_session("firefox", "latest", "OS X", "Monterey", "browserstack-build-1", "BStack Ruby sample parallel") }
+capabililties = [
+    {
+        'bstack:options' => {
+            'os': 'OS X',
+            'osVersion' => 'Monterey',
+            'buildName' => 'browserstack-build-1',
+            'sessionName' => 'BStack Ruby sample parallel'
+        },
+        'browserName' =>  'chrome',
+        'browserVersion' => 'latest'
+    },
+    {
+        'bstack:options' => {
+            'os': 'Windows',
+            'osVersion' => '11',
+            'buildName' => 'browserstack-build-1',
+            'sessionName' => 'BStack Ruby sample parallel'
+        },
+        'browserName' =>  'firefox',
+        'browserVersion' => 'latest'
+    },
+    {
+        'bstack:options' => {
+            'osVersion' => '10.0',
+            'deviceName' => 'Samsung Galaxy S20',
+            'buildName' => 'browserstack-build-1',
+            'sessionName' => 'BStack Ruby sample parallel'
+        },
+        'browserName' =>  'chrome'
+    }
+]
 
-t1.join()
-t2.join()
+test1 = Thread.new { run_session(capabililties[0]) }
+test2 = Thread.new { run_session(capabililties[1]) }
+test3 = Thread.new { run_session(capabililties[2]) }
+
+test1.join()
+test2.join()
+test3.join()
