@@ -16,7 +16,7 @@ def run_session(browser, browser_version, os, osVersion, buildName, sessionName)
   options.add_option('bstack:options', bstack_options)
 
   driver = Selenium::WebDriver.for(:remote,
-    :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
+    :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",
     :capabilities => options)
   begin
       # opening the bstackdemo.com website
