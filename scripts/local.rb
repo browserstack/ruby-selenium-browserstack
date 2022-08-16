@@ -55,13 +55,15 @@ begin
             'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Local setup failed"}}'
         )
     end
-rescue
+rescue StandardError => e
+    puts "Exception occured: #{e.message}"
     # marking test as 'failed' in case of some exception
     driver.execute_script(
-        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}'
+        'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status": "failed", "reason":' +  "\"#{e.message}\"" + ' }}'
     )
+ensure
+    driver.quit
 end
-driver.quit 
 
 # Stop the Local instance
 bs_local.stop

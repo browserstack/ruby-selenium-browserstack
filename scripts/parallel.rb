@@ -58,13 +58,15 @@ def run_session(capabililties)
                 'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Failed to add product to the cart"}}'
             )
         end
-    rescue
+    rescue StandardError => e
+        puts "Exception occured: #{e.message}"
         # mark test as 'failed' if test script is unable to open the bstackdemo.com website
         driver.execute_script(
-            'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status":"failed", "reason": "Some elements failed to load"}}'
+            'browserstack_executor: {"action": "setSessionStatus", "arguments": {"status": "failed", "reason":' +  "\"#{e.message}\"" + ' }}'
         )
+    ensure
+        driver.quit
     end
-    driver.quit 
 end
 
 capabililties = [
