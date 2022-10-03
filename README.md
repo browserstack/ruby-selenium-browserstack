@@ -35,7 +35,7 @@ caps['realMobile'] = 'true'
 caps['os_version'] = '14.0'
 caps['javascriptEnabled'] = 'true'
 caps['name'] = 'BStack-[Ruby] Sample Test' # test name
-caps['build'] = 'BStack Build Number 1' # CI/CD job or build name
+caps['build'] = 'browserstack-build-1' # CI/CD job or build name
   ```
   
 3. Run test session
