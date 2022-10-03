@@ -7,6 +7,7 @@ ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 def run_session(capabililties)
     options = Selenium::WebDriver::Options.send capabililties['browserName']
     options.browser_version = capabililties['browserVersion'] if capabililties['browserVersion']
+    capabililties['bstack:options']['source'] = 'ruby:sample-master:v1.0'
     options.add_option('bstack:options', capabililties['bstack:options'])
 
     driver = Selenium::WebDriver.for(
@@ -75,7 +76,7 @@ capabililties = [
             'os': 'OS X',
             'osVersion' => 'Monterey',
             'buildName' => 'browserstack-build-1',
-            'sessionName' => 'BStack Ruby sample parallel'
+            'sessionName' => 'BStack parallel ruby'
         },
         'browserName' =>  'chrome',
         'browserVersion' => 'latest'
@@ -85,7 +86,7 @@ capabililties = [
             'os': 'Windows',
             'osVersion' => '11',
             'buildName' => 'browserstack-build-1',
-            'sessionName' => 'BStack Ruby sample parallel'
+            'sessionName' => 'BStack parallel ruby'
         },
         'browserName' =>  'firefox',
         'browserVersion' => 'latest'
@@ -95,7 +96,7 @@ capabililties = [
             'osVersion' => '10.0',
             'deviceName' => 'Samsung Galaxy S20',
             'buildName' => 'browserstack-build-1',
-            'sessionName' => 'BStack Ruby sample parallel'
+            'sessionName' => 'BStack parallel ruby'
         },
         'browserName' =>  'chrome'
     }
