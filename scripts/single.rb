@@ -10,7 +10,7 @@ bstack_options = {
     "buildName" => "browserstack-build-1",
     "sessionName" => "BStack single ruby"
 }
-bstack_options['source'] = 'ruby:sample-master:v1.0'
+bstack_options['source'] = 'ruby:sample-main:v1.0'
 options.add_option('bstack:options', bstack_options)
 
 USER_NAME = ENV['BROWSERSTACK_USERNAME'] || "YOUR_USER_NAME"
