@@ -27,7 +27,7 @@ bstack_options = {
     "sessionName" => "BStack local ruby",
     "local" => "true",
 }
-bstack_options['source'] = 'ruby:sample-master:v1.0'
+bstack_options['source'] = 'ruby:sample-main:v1.0'
 options.add_option('bstack:options', bstack_options)
 
 driver = Selenium::WebDriver.for(
