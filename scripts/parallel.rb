@@ -15,6 +15,7 @@ def run_session(browser, version, os, os_version, device, realMobile, javascript
     caps['javascriptEnabled'] = 'true'
     caps['name'] = test_name # test name
     caps['build'] = build_name # CI/CD job or build name
+    caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.0'
 
     driver = Selenium::WebDriver.for(:remote,
       :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",:desired_capabilities => caps)
@@ -58,11 +59,11 @@ def run_session(browser, version, os, os_version, device, realMobile, javascript
     driver.quit
 end
 
-t1 = Thread.new{run_session("Chrome", "latest", "Windows", "10", nil, nil, "true", "Sample test on Chrome-Windows", "Parallel-build-ruby")}
-t2 = Thread.new{run_session("Firefox", "latest", "OS X", "Monterey", nil , nil, "true","Sample test on Firefox-macOS", "Parallel-build-ruby")}
-t3 = Thread.new{run_session("Safari", "latest", "OS X", "Catalina", nil, nil, "true", "Sample test on Safari-macOS", "Parallel-build-ruby")}
-t4 = Thread.new{run_session("Android", "latest", nil, nil, "Samsung Galaxy S20", "true", "true", "Sample test on Android", "Parallel-build-ruby")}
-t5 = Thread.new{run_session("iPhone", "latest-beta", nil, "14", "iPhone 12 Pro Max", "true", "true", "Sample test on iPhone", "Parallel-build-ruby")}
+t1 = Thread.new{run_session("Chrome", "latest", "Windows", "10", nil, nil, "true", "BStack parallel ruby", "browserstack-build-1")}
+t2 = Thread.new{run_session("Firefox", "latest", "OS X", "Monterey", nil , nil, "true","BStack parallel ruby", "browserstack-build-1")}
+t3 = Thread.new{run_session("Safari", "latest", "OS X", "Catalina", nil, nil, "true", "BStack parallel ruby", "browserstack-build-1")}
+t4 = Thread.new{run_session("Android", "latest", nil, nil, "Samsung Galaxy S20", "true", "true", "BStack parallel ruby", "browserstack-build-1")}
+t5 = Thread.new{run_session("iPhone", "latest-beta", nil, "14", "iPhone 12 Pro Max", "true", "true", "BStack parallel ruby", "browserstack-build-1")}
 
 t1.join()
 t2.join()
