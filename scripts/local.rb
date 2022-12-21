@@ -28,7 +28,7 @@ caps['build'] = 'browserstack-build-1' # CI/CD job or build name
 caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.0'
 
 driver = Selenium::WebDriver.for(:remote,
-  :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",
+  :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",
   :desired_capabilities => caps)
 begin
     # opening the bstackdemo.com website

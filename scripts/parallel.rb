@@ -18,7 +18,7 @@ def run_session(browser, version, os, os_version, device, realMobile, javascript
     caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.0'
 
     driver = Selenium::WebDriver.for(:remote,
-      :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub-cloud.browserstack.com/wd/hub",:desired_capabilities => caps)
+      :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",:desired_capabilities => caps)
     begin
         # opening the bstackdemo.com website
         driver.navigate.to "https://bstackdemo.com/"
