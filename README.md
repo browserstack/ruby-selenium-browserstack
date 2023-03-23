@@ -18,8 +18,8 @@ gem install bundler
 bundle install
 ```
 2. Configure the capabilties for the test and use your credentials <br>
-(Context: For running single test session). <br>
-i. Navigate to ./scripts/single.rb <br>
+(Context: For running test session). <br>
+i. Navigate to ./scripts/parallel.rb <br>
 ii. Change the capabilities and swap the credentials.
 
   You can export Browserstack Username and Access key or hard code them in script.
@@ -27,31 +27,14 @@ ii. Change the capabilities and swap the credentials.
 export BROWSERSTACK_USERNAME="YOUR_USER_NAME";
 export BROWSERSTACK_ACCESS_KEY="YOUR_ACCESS_KEY";
 ```
-  ```ruby
-# change capabilities
-bstack_options = {
-    "os" => "OS X",
-    "osVersion" => "Sierra",
-    "buildName" => "Final-Snippet-Test",
-    "sessionName" => "Selenium-4 Ruby snippet test",
-    "local" => "false",
-    "seleniumVersion" => "4.0.0",
-}
-
-  ```
   
 3. Run test session
-For running single test
+For running tests
 ```
-bundle exec ruby ./scripts/single.rb
+bundle exec ruby ./scripts/parallel.rb
 ```
 
 For running local test (in ./scripts/local.rb)
 ```
 bundle exec ruby ./scripts/local.rb
-```
-
-For running parallel tests
-```
-bundle exec ruby ./scripts/parallel.rb
 ```
