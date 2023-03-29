@@ -15,7 +15,7 @@ def run_session(browser, version, os, os_version, device, realMobile, javascript
     caps['javascriptEnabled'] = 'true'
     caps['name'] = test_name # test name
     caps['build'] = build_name # CI/CD job or build name
-    caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.0'
+    caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.1'
 
     driver = Selenium::WebDriver.for(:remote,
       :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",:desired_capabilities => caps)

@@ -25,7 +25,7 @@ caps['javascriptEnabled'] = 'true'
 caps['browserstack.local'] = 'true'
 caps['name'] = 'BStack local ruby' # test name
 caps['build'] = 'browserstack-build-1' # CI/CD job or build name
-caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.0'
+caps['browserstack.source'] = 'ruby:sample-selenium-3:v1.1'
 
 driver = Selenium::WebDriver.for(:remote,
   :url => "https://#{USER_NAME}:#{ACCESS_KEY}@hub.browserstack.com/wd/hub",
