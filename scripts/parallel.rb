@@ -7,7 +7,7 @@ ACCESS_KEY = ENV['BROWSERSTACK_ACCESS_KEY'] || "YOUR_ACCESS_KEY"
 def run_session(capabililties)
     options = Selenium::WebDriver::Options.send capabililties['browserName']
     options.browser_version = capabililties['browserVersion'] if capabililties['browserVersion']
-    capabililties['bstack:options']['source'] = 'ruby:sample-main:v1.0'
+    capabililties['bstack:options']['source'] = 'ruby:sample-main:v1.1'
     options.add_option('bstack:options', capabililties['bstack:options'])
 
     driver = Selenium::WebDriver.for(
